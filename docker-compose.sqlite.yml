@@ -10,7 +10,9 @@ services:
     volumes:
       - /usr/src/app
     environment:
+      NODE_ENV: ${NODE_ENV-development}
       HOSTNAME: ${HOSTNAME-localhost}
+      EMAIL: ${EMAIL}
       DATABASE: sqlite
     depends_on:
       - worker
@@ -22,5 +24,7 @@ services:
     volumes:
       - /usr/src/app
     environment:
+      NODE_ENV: ${NODE_ENV-development}
       HOSTNAME: ${HOSTNAME-localhost}
+      EMAIL: ${EMAIL}
       DATABASE: sqlite

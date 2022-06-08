@@ -10,6 +10,7 @@ services:
     volumes:
       - /usr/src/app
     environment:
+      NODE_ENV: ${NODE_ENV-development}
       HOSTNAME: ${HOSTNAME-localhost}
       DATABASE: postgres
       DATABASE_HOST: database
@@ -25,10 +26,12 @@ services:
     volumes:
       - /usr/src/app
     environment:
+      NODE_ENV: ${NODE_ENV-development}
       HOSTNAME: ${HOSTNAME-localhost}
       DATABASE: postgres
       DATABASE_HOST: database
       DATABASE_PORT: 5432
+      EMAIL: ${EMAIL}
     depends_on:
       - database
   database:
@@ -40,3 +43,4 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: vendure
+      EMAIL: ${EMAIL}

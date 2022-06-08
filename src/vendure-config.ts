@@ -5,8 +5,8 @@ import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { ConnectionOptions } from 'typeorm/connection/ConnectionOptions';
 import path from 'path';
 
-const HOSTNAME = process.env.HOSTNAME || 'localhost'
-const isProduction = process.env.ENVIRONMENT == 'production'
+const hostname = process.env.HOSTNAME || 'localhost'
+const isProduction = process.env.NODE_ENV == 'production'
 
 function getDbOptions(): ConnectionOptions {
     switch(process.env.DATABASE || 'postgres') {
@@ -76,7 +76,7 @@ export const config: VendureConfig = {
         AssetServerPlugin.init({
             route: 'assets',
             assetUploadDir: path.join(__dirname, '../static/assets'),
-            assetUrlPrefix: `http://${HOSTNAME}:3000/assets/`,
+            assetUrlPrefix: `http://${hostname}:3000/assets/`,
         }),
         DefaultJobQueuePlugin,
         DefaultSearchPlugin,
@@ -93,9 +93,9 @@ export const config: VendureConfig = {
             globalTemplateVars: {
                 // The following variables will change depending on your storefront implementation
                 fromAddress: process.env.EMAIL || '"example" <noreply@example.com>',
-                verifyEmailAddressUrl: `http://${HOSTNAME}:8080/verify`,
-                passwordResetUrl: `http://${HOSTNAME}:8080/password-reset`,
-                changeEmailAddressUrl: `http://${HOSTNAME}:8080/verify-email-address-change`
+                verifyEmailAddressUrl: `http://${hostname}:8080/verify`,
+                passwordResetUrl: `http://${hostname}:8080/password-reset`,
+                changeEmailAddressUrl: `http://${hostname}:8080/verify-email-address-change`
             },
         }),
     ],
