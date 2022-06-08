@@ -2,46 +2,70 @@ import { DefaultJobQueuePlugin, DefaultSearchPlugin, dummyPaymentHandler, Vendur
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
+import { ConnectionOptions } from 'typeorm/connection/ConnectionOptions';
 import path from 'path';
+
+const HOSTNAME = process.env.HOSTNAME || 'localhost'
+const isProduction = process.env.ENVIRONMENT == 'production'
+
+function getDbOptions(): ConnectionOptions {
+    switch(process.env.DATABASE || 'postgres') {
+    default:
+    case 'postgres':
+        return {
+            type: 'postgres',
+            synchronize: false, // turn this off for production
+            logging: false,
+            database: 'vendure',
+            host: process.env.DATABASE_HOST || 'localhost',
+            port: Number(process.env.DATABASE_PORT) || 5432,
+            username: process.env.POSTGRES_USER || 'postgres',
+            password: process.env.POSTGRES_PASSWORD || 'password',
+        }
+    case 'sqlite':
+        return {
+            type: 'sqlite',
+            synchronize: false, // turn this off for production
+            logging: false,
+            database: 'vendure',
+        }
+    }
+}
+
+function getPlaygroundApiOptions() {
+    if (isProduction)
+        return false
+    
+    return {
+        settings: {
+            'request.credentials': 'include',
+        } as any,
+    };
+}
 
 export const config: VendureConfig = {
     apiOptions: {
         hostname: '0.0.0.0',
         port: 3000,
         adminApiPath: 'admin-api',
-        adminApiPlayground: {
-            settings: {
-                'request.credentials': 'include',
-            } as any,
-        }, // turn this off for production
-        adminApiDebug: true, // turn this off for production
+        adminApiPlayground: getPlaygroundApiOptions(),
+        adminApiDebug: !isProduction,
         shopApiPath: 'shop-api',
-        shopApiPlayground: {
-            settings: {
-                'request.credentials': 'include',
-            } as any,
-        }, // turn this off for production
-        shopApiDebug: true, // turn this off for production
+        shopApiPlayground: getPlaygroundApiOptions(),
+        shopApiDebug: !isProduction,
     },
     authOptions: {
         superadminCredentials: {
-            identifier: 'superadmin',
-            password: 'superadmin',
+            identifier: process.env.SUPERADMIN_USERNAME || 'superadmin',
+            password: process.env.SUPERADMIN_PASSWORD || 'superadmin',
         },
         requireVerification: true,
         cookieOptions: {
             secret: process.env.COOKIE_SECRET || '3r8wq8jdo92',
         },
     },
-    dbConnectionOptions: {
-        type: 'postgres',
-        synchronize: false, // turn this off for production
-        logging: false,
-        database: 'vendure',
-        host: process.env.DATABASE_HOST || 'localhost',
-        port: Number(process.env.DATABASE_PORT) || 5432,
-        username: process.env.POSTGRES_USER || 'postgres',
-        password: process.env.POSTGRES_PASSWORD || 'password',
+    dbConnectionOptions: { 
+        ...getDbOptions(), 
         migrations: [path.join(__dirname, '../migrations/*.ts')],
     },
     paymentOptions: {
@@ -52,7 +76,7 @@ export const config: VendureConfig = {
         AssetServerPlugin.init({
             route: 'assets',
             assetUploadDir: path.join(__dirname, '../static/assets'),
-            assetUrlPrefix: 'http://localhost:3000/assets/',
+            assetUrlPrefix: `http://${HOSTNAME}:3000/assets/`,
         }),
         DefaultJobQueuePlugin,
         DefaultSearchPlugin,
@@ -68,10 +92,10 @@ export const config: VendureConfig = {
             templatePath: path.join(__dirname, '../static/email/templates'),
             globalTemplateVars: {
                 // The following variables will change depending on your storefront implementation
-                fromAddress: '"example" <noreply@example.com>',
-                verifyEmailAddressUrl: 'http://localhost:8080/verify',
-                passwordResetUrl: 'http://localhost:8080/password-reset',
-                changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
+                fromAddress: process.env.EMAIL || '"example" <noreply@example.com>',
+                verifyEmailAddressUrl: `http://${HOSTNAME}:8080/verify`,
+                passwordResetUrl: `http://${HOSTNAME}:8080/password-reset`,
+                changeEmailAddressUrl: `http://${HOSTNAME}:8080/verify-email-address-change`
             },
         }),
     ],

@@ -1,0 +1,26 @@
+version: "3"
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    command: ["yarn", "run:server"]
+    volumes:
+      - /usr/src/app
+    environment:
+      HOSTNAME: ${HOSTNAME-localhost}
+      DATABASE: sqlite
+    depends_on:
+      - worker
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["yarn", "run:worker"]
+    volumes:
+      - /usr/src/app
+    environment:
+      HOSTNAME: ${HOSTNAME-localhost}
+      DATABASE: sqlite

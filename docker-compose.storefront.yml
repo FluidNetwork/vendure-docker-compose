@@ -1,0 +1,14 @@
+version: "3"
+services:
+  storefront:
+    build:
+      context: .
+      dockerfile: Dockerfile-storefront
+      args:
+        STOREFRONT_VERSION: 0.1.27
+    ports:
+      - 4000:4000
+    environment:
+      SERVER_API_HOST: http://server
+      SERVER_API_PORT: 3000
+      SERVER_API_PATH: shop-api
