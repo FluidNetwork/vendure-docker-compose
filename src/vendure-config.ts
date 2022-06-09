@@ -2,6 +2,7 @@ import { DefaultJobQueuePlugin, DefaultSearchPlugin, dummyPaymentHandler, Vendur
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
+import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
 import { ConnectionOptions } from 'typeorm/connection/ConnectionOptions';
 import path from 'path';
 import {
@@ -11,6 +12,13 @@ import {
 } from '@vendure/common/lib/shared-constants';
 const hostname = process.env.HOSTNAME || 'localhost'
 const isProduction = process.env.NODE_ENV == 'production'
+
+let extraPlugins: Array<any> = []
+
+if (process.env.MOLLIE_API_KEY) {
+    const plugin = MolliePlugin.init({ vendureHost: hostname })
+    extraPlugins.push(plugin)
+}
 
 function getDbOptions(): ConnectionOptions {
     switch(process.env.DATABASE || 'postgres') {
@@ -104,6 +112,7 @@ export const config: VendureConfig = {
                 changeEmailAddressUrl: `http://${hostname}:8080/verify-email-address-change`
             },
         }),
+        ...extraPlugins,
     ],
 };
 

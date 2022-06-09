@@ -6,6 +6,7 @@ import path from 'path';
 import fs from 'fs-extra';
 
 import { config } from './vendure-config';
+import { setupMollie } from './setup-mollie';
 
 // tslint:disable:no-console
 
@@ -48,11 +49,20 @@ export async function setupServer() {
             initialData,
             path.join(require.resolve('@vendure/create'), '../assets/products.csv'),
         );
+
         try {
             console.log('populating customers...');
             await populateCustomers(app, 10, message => console.log(message));
             config.authOptions.requireVerification = true;
             return app.close();
+        } catch (err) {
+            console.log(err);
+            process.exit(1);
+        }
+
+        try {
+            console.log('setting up Mollie payment method...');
+            await setupMollie(config as Required<VendureConfig>);
         } catch (err) {
             console.log(err);
             process.exit(1);
@@ -100,3 +110,5 @@ async function clearAllTablesWithPolling(populateConfig: VendureConfig) {
         }
     }
 }
+
+setupServer()
