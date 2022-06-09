@@ -10,7 +10,9 @@ import {
     SUPER_ADMIN_USER_IDENTIFIER,
     SUPER_ADMIN_USER_PASSWORD,
 } from '@vendure/common/lib/shared-constants';
+
 const hostname = process.env.HOSTNAME || 'localhost'
+const port = Number.parseInt(process.env.PORT || "3000")
 const isProduction = process.env.NODE_ENV == 'production'
 
 let extraPlugins: Array<any> = []
@@ -58,7 +60,7 @@ function getPlaygroundApiOptions() {
 export const config: VendureConfig = {
     apiOptions: {
         hostname: '0.0.0.0',
-        port: 3000,
+        port: port,
         adminApiPath: 'admin-api',
         adminApiPlayground: getPlaygroundApiOptions(),
         adminApiDebug: !isProduction,
@@ -73,7 +75,7 @@ export const config: VendureConfig = {
         },
         requireVerification: true,
         cookieOptions: {
-            secret: process.env.COOKIE_SECRET || '3r8wq8jdo92',
+            secret: process.env.COOKIE_SECRET,
         },
         tokenMethod: ['cookie', 'bearer'],
         authTokenHeaderKey: DEFAULT_AUTH_TOKEN_HEADER_KEY

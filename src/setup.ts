@@ -53,8 +53,6 @@ export async function setupServer() {
         try {
             console.log('populating customers...');
             await populateCustomers(app, 10, message => console.log(message));
-            config.authOptions.requireVerification = true;
-            return app.close();
         } catch (err) {
             console.log(err);
             process.exit(1);
@@ -67,6 +65,9 @@ export async function setupServer() {
             console.log(err);
             process.exit(1);
         }
+    
+        config.authOptions.requireVerification = true;
+        return app.close();
     }
 }
 
@@ -110,5 +111,3 @@ async function clearAllTablesWithPolling(populateConfig: VendureConfig) {
         }
     }
 }
-
-setupServer()
