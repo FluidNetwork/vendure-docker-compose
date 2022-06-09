@@ -18,7 +18,7 @@ const isProduction = process.env.NODE_ENV == 'production'
 let extraPlugins: Array<any> = []
 
 if (process.env.MOLLIE_API_KEY) {
-    const plugin = MolliePlugin.init({ vendureHost: hostname })
+    const plugin = MolliePlugin.init({ vendureHost: `http://${hostname}:${port}` })
     extraPlugins.push(plugin)
 }
 
