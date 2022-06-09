@@ -4,7 +4,11 @@ import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { ConnectionOptions } from 'typeorm/connection/ConnectionOptions';
 import path from 'path';
-
+import {
+    DEFAULT_AUTH_TOKEN_HEADER_KEY,
+    SUPER_ADMIN_USER_IDENTIFIER,
+    SUPER_ADMIN_USER_PASSWORD,
+} from '@vendure/common/lib/shared-constants';
 const hostname = process.env.HOSTNAME || 'localhost'
 const isProduction = process.env.NODE_ENV == 'production'
 
@@ -56,13 +60,15 @@ export const config: VendureConfig = {
     },
     authOptions: {
         superadminCredentials: {
-            identifier: process.env.SUPERADMIN_USERNAME || 'superadmin',
-            password: process.env.SUPERADMIN_PASSWORD || 'superadmin',
+            identifier: process.env.SUPER_ADMIN_USER_IDENTIFIER || SUPER_ADMIN_USER_IDENTIFIER,
+            password: process.env.SUPER_ADMIN_USER_PASSWORD || SUPER_ADMIN_USER_PASSWORD,
         },
         requireVerification: true,
         cookieOptions: {
             secret: process.env.COOKIE_SECRET || '3r8wq8jdo92',
         },
+        tokenMethod: ['cookie', 'bearer'],
+        authTokenHeaderKey: DEFAULT_AUTH_TOKEN_HEADER_KEY
     },
     dbConnectionOptions: { 
         ...getDbOptions(), 

@@ -10,11 +10,12 @@ services:
     volumes:
       - /usr/src/app
     environment:
-      NODE_ENV: ${NODE_ENV-development}
-      HOSTNAME: ${HOSTNAME-localhost}
       DATABASE: postgres
       DATABASE_HOST: database
       DATABASE_PORT: 5432
+      HOSTNAME: ${HOSTNAME}
+      SUPER_ADMIN_USER_IDENTIFIER: ${SUPER_ADMIN_USER_IDENTIFIER}
+      SUPER_ADMIN_USER_PASSWORD: ${SUPER_ADMIN_USER_PASSWORD}
     depends_on:
       - database
       - worker
@@ -26,12 +27,14 @@ services:
     volumes:
       - /usr/src/app
     environment:
-      NODE_ENV: ${NODE_ENV-development}
-      HOSTNAME: ${HOSTNAME-localhost}
       DATABASE: postgres
       DATABASE_HOST: database
       DATABASE_PORT: 5432
+      NODE_ENV: ${NODE_ENV}
+      HOSTNAME: ${HOSTNAME}
       EMAIL: ${EMAIL}
+      SUPER_ADMIN_USER_IDENTIFIER: ${SUPER_ADMIN_USER_IDENTIFIER}
+      SUPER_ADMIN_USER_PASSWORD: ${SUPER_ADMIN_USER_PASSWORD}
     depends_on:
       - database
   database:
@@ -43,4 +46,3 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: vendure
-      EMAIL: ${EMAIL}

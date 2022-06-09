@@ -10,10 +10,12 @@ services:
     volumes:
       - /usr/src/app
     environment:
-      NODE_ENV: ${NODE_ENV-development}
-      HOSTNAME: ${HOSTNAME-localhost}
-      EMAIL: ${EMAIL}
       DATABASE: sqlite
+      NODE_ENV: ${NODE_ENV}
+      HOSTNAME: ${HOSTNAME}
+      EMAIL: ${EMAIL}
+      SUPER_ADMIN_USER_IDENTIFIER: ${SUPER_ADMIN_USER_IDENTIFIER}
+      SUPER_ADMIN_USER_PASSWORD: ${SUPER_ADMIN_USER_PASSWORD}
     depends_on:
       - worker
   worker:
@@ -24,7 +26,9 @@ services:
     volumes:
       - /usr/src/app
     environment:
-      NODE_ENV: ${NODE_ENV-development}
-      HOSTNAME: ${HOSTNAME-localhost}
-      EMAIL: ${EMAIL}
       DATABASE: sqlite
+      NODE_ENV: ${NODE_ENV}
+      HOSTNAME: ${HOSTNAME}
+      EMAIL: ${EMAIL}
+      SUPER_ADMIN_USER_IDENTIFIER: ${SUPER_ADMIN_USER_IDENTIFIER}
+      SUPER_ADMIN_USER_PASSWORD: ${SUPER_ADMIN_USER_PASSWORD}
