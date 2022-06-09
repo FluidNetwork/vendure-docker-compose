@@ -783,31 +783,31 @@
   resolved "https://registry.npmjs.org/@types/zen-observable/-/zen-observable-0.8.3.tgz#781d360c282436494b32fe7d9f7f8e64b3118aa3"
   integrity sha512-fbF6oTd4sGGy0xjHPKAt+eS2CrxJ3+6gQ3FGcBoIJR2TLAyCkCyI8JqZNy+FeON0AhVgNJoUumVoZQjBFUqHkw==
 
-"@vendure/admin-ui-plugin@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/@vendure/admin-ui-plugin/-/admin-ui-plugin-1.6.1.tgz#fa144cdff5800b4e661672b020b66e0bb08b3bce"
-  integrity sha512-GcfnioaG2Qnwuie2kZxoQRTOC2tpIxejw+HQutFPem5+O2QDXmwLVOpK78xxaGyvxh8N0xqz2J7+OCKOZ5FNJw==
+"@vendure/admin-ui-plugin@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/admin-ui-plugin/-/admin-ui-plugin-1.6.2.tgz#96c626acbf6d027ce05277347d5a1aa4c81ee496"
+  integrity sha512-XLI7JMJcPc/HwtnntZg19d6bkUtIOvvDiEKgbqeXHex2vvp4evzwyW0NoWuSCK27pSTP7ScLKVP6xk/8yIsTcw==
   dependencies:
     fs-extra "^10.0.0"
 
-"@vendure/asset-server-plugin@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/@vendure/asset-server-plugin/-/asset-server-plugin-1.6.1.tgz#457a70e8a97ec601dc38709b8243e5756c8d2570"
-  integrity sha512-R4tqDOGTnW/YGuyRTuoLX3bGclaLZHo+rjdMPpDkOf4r8wduFLGUCQWCfuSye1JpsY+/tZrccuRJyuIG+spbXQ==
+"@vendure/asset-server-plugin@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/asset-server-plugin/-/asset-server-plugin-1.6.2.tgz#4b9c87d303056bf439ca65e9db197e36e6633721"
+  integrity sha512-qaVZPUa4kHDzkkSkdzFjEoHPskea8YsDQzblCafLh1amdm+N3ce2M+ugtgWAK437F5rFbOZw00hWx/VjTKoU9Q==
   dependencies:
     file-type "^16.2.0"
     fs-extra "^10.0.0"
     sharp "~0.29.0"
 
-"@vendure/common@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/@vendure/common/-/common-1.6.1.tgz#35859a590f234d3c3bf4bdb4a55007f6f5a0392e"
-  integrity sha512-ICdHXYQiIlJZtfILYzmV6i1ckbhRtZr/RBuLtZOGnjzbybL6M3owxm/MT3uWCf5ZvHijEg0zNraLghKc91irrQ==
+"@vendure/common@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/common/-/common-1.6.2.tgz#a6ec21393651028d4208e0c2e2cd56e105794797"
+  integrity sha512-yE/e5BokcVwStXnAHkLDs22mbkyoVJFRQEM8+hX0j44rHUvfl/wTidwaE3tweUvVN3FUD4Ol8iHKD1mriFZI8g==
 
-"@vendure/core@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/@vendure/core/-/core-1.6.1.tgz#113533ebbe4dab1cee65f8bad79e4141f9701744"
-  integrity sha512-CwFkWHg8HyFDjYuLWy6+NP679Guqnl+7G4mT61/vfp95aHkl2m7bakZWc6R8Kyt09o5ehXl/ooYT2o5vv/HzBw==
+"@vendure/core@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/core/-/core-1.6.2.tgz#fb7f9b0768817538aeb0f283bc925dcd96562356"
+  integrity sha512-NQi6mD8cX4Dp5XfFPLJw0Wc1Am3aEFOLFJQXY8xq16Auje+QfNVAUzWDWL5gqeM+YUqhDsZ/R5eYl6tkzhB5YA==
   dependencies:
     "@graphql-tools/stitch" "^7.5.3"
     "@nestjs/common" "7.6.17"
@@ -847,12 +847,12 @@
     rxjs "^6.6.3"
     typeorm "0.2.41"
 
-"@vendure/create@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/@vendure/create/-/create-1.6.1.tgz#1ab93c17f1784c9b0b12d94c993a45dd7311eeef"
-  integrity sha512-fewtBqEJccPhj7HP2yd3PJ4tBdU4LJU+SBGOgQoIVp3WODNZFMEXRUTJQhZHQue4VJv4Lk5MAyBD1XGAzGCmig==
+"@vendure/create@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/create/-/create-1.6.2.tgz#e5931d5a2138a74042a691a56afb64da7c38f0a6"
+  integrity sha512-+VHVsaH7mWeRen4rVGZV/Ocnu0huzb/PUPi3iu6s65/mKRwTwZL0CUwyVzKaDoQllknKp2zdvuHDxQ/cSEDc5A==
   dependencies:
-    "@vendure/common" "^1.6.1"
+    "@vendure/common" "^1.6.2"
     chalk "^4.1.0"
     commander "^7.1.0"
     cross-spawn "^7.0.3"
@@ -865,10 +865,10 @@
     semver "^7.3.2"
     tcp-port-used "^1.0.1"
 
-"@vendure/email-plugin@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/@vendure/email-plugin/-/email-plugin-1.6.1.tgz#92d861c57d4c3df0f40d4fa201aaf9266f5b5423"
-  integrity sha512-c0yr5ByBx5NVGA77TjeBNz+D3pRM5cFxacp9ivD8Yg0IYvcyRawumdpynjXfTyS3/p08LFTwwA7ExziaK0QwrA==
+"@vendure/email-plugin@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/email-plugin/-/email-plugin-1.6.2.tgz#747a4f09c4cc8b80a790f71018f2373581135fda"
+  integrity sha512-6IcxRkcD1m1uy9VQiSRQyBaKrhNy48EzlvNNkYXB/RmydW7XCO9vNPQAI8GqOPJx4rgC7UV5StI4F7iMCUsJtw==
   dependencies:
     "@types/nodemailer" "^6.4.0"
     dateformat "^3.0.3"
@@ -878,13 +878,13 @@
     mjml "^4.7.1"
     nodemailer "^6.4.13"
 
-"@vendure/testing@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/@vendure/testing/-/testing-1.6.1.tgz#bc94258e6ed1d5800b9abb45520177a83af033a7"
-  integrity sha512-DgfDzHbX26MM4EVQsvkw5aqmMICKRkn32OsjtZpIkulPFc1FlHt0vQjCDZ15xDts7ZtNSyfO1ODsp+zoycD43w==
+"@vendure/testing@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/testing/-/testing-1.6.2.tgz#da166c03f38bfb87f6743f23ce1624a9c0f08e2c"
+  integrity sha512-7Ww/5WjnyAcap8Hw4QMXoKXQ3eWnlbzdq5Ilrq5Ug/11wIJi80ZE59zE0+6d+aaac/R8XcmH1rhJPDeo757drg==
   dependencies:
     "@types/node-fetch" "^2.5.4"
-    "@vendure/common" "^1.6.1"
+    "@vendure/common" "^1.6.2"
     faker "^4.1.0"
     form-data "^3.0.0"
     graphql "15.5.1"
@@ -1333,6 +1333,13 @@ axios@0.21.1:
   integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   dependencies:
     follow-redirects "^1.10.0"
+
+axios@^0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.25.0.tgz#349cfbb31331a9b4453190791760a8d35b093e0a"
+  integrity sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==
+  dependencies:
+    follow-redirects "^1.14.7"
 
 backo2@^1.0.2:
   version "1.0.2"
@@ -2470,6 +2477,11 @@ follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
+
+follow-redirects@^1.14.7:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
+  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
 
 for-each@^0.3.3:
   version "0.3.3"
