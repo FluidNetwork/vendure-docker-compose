@@ -58,12 +58,14 @@ export async function setupServer() {
             process.exit(1);
         }
 
-        try {
-            console.log('setting up Mollie payment method...');
-            await setupMollie(config as Required<VendureConfig>);
-        } catch (err) {
-            console.log(err);
-            process.exit(1);
+        if (process.env.MOLLIE_API_KEY) {
+            try {
+                console.log('setting up Mollie payment method...');
+                await setupMollie(config as Required<VendureConfig>);
+            } catch (err) {
+                console.log(err);
+                process.exit(1);
+            }
         }
     
         config.authOptions.requireVerification = true;
