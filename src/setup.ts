@@ -6,7 +6,7 @@ import path from 'path';
 import fs from 'fs-extra';
 
 import { config } from './vendure-config';
-import { setupMollie } from './setup-mollie';
+import { setupMollie, setupCoinbase } from './setup-payments';
 
 // tslint:disable:no-console
 
@@ -58,16 +58,8 @@ export async function setupServer() {
             process.exit(1);
         }
 
-        if (process.env.MOLLIE_API_KEY) {
-            try {
-                console.log('setting up Mollie payment method...');
-                await setupMollie(config as Required<VendureConfig>);
-            } catch (err) {
-                console.log(err);
-                process.exit(1);
-            }
-        }
-    
+        await setupPayments();
+
         config.authOptions.requireVerification = true;
         return app.close();
     }
@@ -110,6 +102,31 @@ async function clearAllTablesWithPolling(populateConfig: VendureConfig) {
             return;
         } catch (e) {
             console.log(`Could not clear tables: ${e.message}`);
+        }
+    }
+}
+
+/**
+ * Sets up payment handlers
+ */
+async function setupPayments() {
+    if (process.env.PLUGIN_MOLLIE) {
+        try {
+            console.log('setting up Mollie payment method...');
+            await setupMollie(config as Required<VendureConfig>);
+        } catch (err) {
+            console.log(err);
+            process.exit(1);
+        }
+    }
+
+    if (process.env.PLUGIN_COINBASE) {
+        try {
+            console.log('setting up Coinbase payment method...');
+            await setupCoinbase(config as Required<VendureConfig>);
+        } catch (err) {
+            console.log(err);
+            process.exit(1);
         }
     }
 }

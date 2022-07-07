@@ -3,6 +3,7 @@ import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
+import { CoinbasePlugin } from 'vendure-plugin-coinbase';
 import { ConnectionOptions } from 'typeorm/connection/ConnectionOptions';
 import path from 'path';
 import {
@@ -17,9 +18,12 @@ const isProduction = process.env.NODE_ENV == 'production'
 
 let extraPlugins: Array<any> = []
 
-if (process.env.MOLLIE_API_KEY) {
-    const plugin = MolliePlugin.init({ vendureHost: `http://${hostname}:${port}` })
-    extraPlugins.push(plugin)
+if (process.env.PLUGIN_MOLLIE) {
+    extraPlugins.push(MolliePlugin.init({ vendureHost: `http://${hostname}:${port}` }))
+}
+
+if (process.env.PLUGIN_COINBASE) {
+    extraPlugins.push(CoinbasePlugin)
 }
 
 function getDbOptions(): ConnectionOptions {
