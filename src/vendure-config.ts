@@ -96,7 +96,7 @@ export const config: VendureConfig = {
         AssetServerPlugin.init({
             route: 'assets',
             assetUploadDir: path.join(__dirname, '../static/assets'),
-            assetUrlPrefix: `http://${hostname}:3000/assets/`,
+            assetUrlPrefix: `https://${hostname}/assets/`,
         }),
         DefaultJobQueuePlugin,
         DefaultSearchPlugin,
@@ -113,9 +113,9 @@ export const config: VendureConfig = {
             globalTemplateVars: {
                 // The following variables will change depending on your storefront implementation
                 fromAddress: process.env.EMAIL || '"example" <noreply@example.com>',
-                verifyEmailAddressUrl: `http://${hostname}:8080/verify`,
-                passwordResetUrl: `http://${hostname}:8080/password-reset`,
-                changeEmailAddressUrl: `http://${hostname}:8080/verify-email-address-change`
+                verifyEmailAddressUrl: `http://${hostname}:${port}/verify`,
+                passwordResetUrl: `http://${hostname}:${port}/password-reset`,
+                changeEmailAddressUrl: `http://${hostname}:${port}/verify-email-address-change`
             },
         }),
         ...extraPlugins,
